@@ -28,8 +28,11 @@ body {
   line-height: 1.5;
 }
 img {
-  width: 300px;
+  width: 70%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
+
 a {
   color: #ffe66d;
 }
@@ -53,7 +56,7 @@ h2 {
   max-width: 800px;
   width: 85%;
   margin: 0 auto;
-  padding: 60px 0;
+  padding: 40px 0;
 }
 h3 {
   margin-bottom: 0;
@@ -144,7 +147,7 @@ header {
   background-image: url(../images/joanna-kosinska-unsplash.jpg);
   background-size: cover;
   background-position: top right;
-  padding-bottom: 100px;
+  padding-bottom: 60px;
 }
 .education p {
   width: 60%;
@@ -172,3 +175,16 @@ footer {
   padding: 15px;
   display: inline-block;
 }
+
+
+
+
+
+/* Project html font setting,img size
+------------------------------------*/
+.project_html_img {
+width: 100%;
+
+}
+
+
