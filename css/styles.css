@@ -8,183 +8,226 @@ https://coolors.co/f7fff7-343434-2f3061-ffe66d-a1c6d7
 #A1C6D7 - blue light
 */
 
-/* Global styles
+/* Optional: CSS에서 폰트 임포트 (HTML <head>에 link 추가했다면 생략 가능) */
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap'); */
+
+/* Global
 ------------------------------------*/
 html {
   box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
 }
-*,
-*:before,
-*:after {
+*, *::before, *::after {
   box-sizing: inherit;
 }
 
-body {
-  color: #343434;
-  margin: 0;
-  padding: 0;
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-  line-height: 1.5;
-}
-img {
-  width: 70%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+:root{
+  /* 타이포 스케일 */
+  --font-base: 16px;
+  --spacing: 1rem;
+  --radius: 8px;
+
+  /* 색상 토큰 */
+  --c-bg: #F7FFF7;
+  --c-text: #343434;
+  --c-primary: #2F3061;
+  --c-accent: #FFE66D;
+  --c-surface: #A1C6D7;
 }
 
+body {
+  color: var(--c-text);
+  background: var(--c-bg);
+  margin: 0;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
+  font-size: var(--font-base);
+  line-height: 1.6;
+}
+
+/* 전역 img 폭 강제 제거 → 컴포넌트 단위에서 제어 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 링크: 기본은 진한 파랑, 헤더/푸터에서 밝은 색으로 오버라이드 */
 a {
-  color: #ffe66d;
+  color: var(--c-primary);
+  text-underline-offset: 2px;
 }
 a:hover {
   text-decoration: none;
 }
-h1 {
-  font-size: 5em;
-  line-height: 1;
+a:focus-visible {
+  outline: 3px solid var(--c-accent);
+  outline-offset: 2px;
 }
-h2 {
-  font-size: 45px;
-}
-h1,
-h2 {
+
+/* 헤딩
+------------------------------------*/
+h1, h2 {
   font-family: "Caveat", cursive;
   font-weight: 400;
-  margin: 0;
+  margin: 0 0 .5rem 0;
+  line-height: 1.1;
 }
-.content-wrap {
-  max-width: 800px;
-  width: 85%;
-  margin: 0 auto;
-  padding: 40px 0;
-}
+h1 { font-size: 3rem; }
+h2 { font-size: 2.25rem; }
 h3 {
-  margin-bottom: 0;
-}
-.item-details h3 + p {
-  font-style: italic;
-}
-.item-details h3 ~ p {
-  margin: 0;
-}
-.divider > section {
-  border-bottom: 1px dashed #343434;
-  padding: 25px 0;
-}
-.divider > section:last-of-type {
-  border-bottom: none;
+  margin: 0 0 .25rem 0;
+  font-size: 1.25rem;
 }
 
+/* 레이아웃 공통 래퍼 */
+.content-wrap {
+  max-width: 960px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+/* 유틸 */
 .small-letter {
-  font-size: 9px;
+  font-size: .8rem;
   font-style: italic;
 }
+.item-details h3 + p { font-style: italic; }
+.item-details h3 ~ p { margin: 0; }
 
+/* 구분선(필요시) */
+.divider > section {
+  border-bottom: 1px dashed var(--c-text);
+  padding: 24px 0;
+}
+.divider > section:last-of-type { border-bottom: none; }
 
-
-/* Profile
+/* Header (Intro)
 ------------------------------------*/
 header {
-  background: #2F3061;
+  background: var(--c-primary);
   color: #f7fff7;
   text-align: center;
 }
-
-
+header a { color: var(--c-accent); }  /* 헤더 내부 링크는 밝게 */
 
 /* Projects
 ------------------------------------*/
 .projects {
-  background: #A1C6D7;
+  background: var(--c-surface);
 }
-.projects a {
-  color: #2f3061;
+
+/* 프로젝트 리스트: 카드형 그리드 */
+.projects .content-wrap {
+  display: grid;
+  gap: 28px;
 }
-.projects .btn {
-  color: #f7fff7;
-  background: #2f3061;
-  text-decoration: none;
-  padding: 8px;
-  border-radius: 4px;
-  display: inline-block;
-}
-.projects .btn:hover {
-  background: rgba(47, 48, 97, 80%);
-}
+
+/* 각 프로젝트 카드 */
 .project-item {
-  overflow: hidden;
-  border-bottom: 1px dashed #343434;
-  padding: 25px 0;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  align-items: start;
 }
+
+/* 썸네일: 전용 클래스 부여 권장 (HTML에서 <img class="project-thumb">) */
 .project-item img {
-  float: left;
-  margin-right: 20px;
+  width: 100%;
+  border-radius: calc(var(--radius) - 2px);
+  /* 옛 float 제거: 반응형 안정성 ↑ */
 }
+
+/* 타이틀 여백 보정 */
 .project-item h3 {
   margin-top: 0;
 }
 
-
-
-
-
-
-/* Work Experience
-------------------------------------*/
-.work-experience {
-  background: #f7fff7;
-  
+/* 버튼 */
+.projects a { color: var(--c-primary); }
+.projects .btn {
+  color: #f7fff7;
+  background: var(--c-primary);
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 600;
 }
+.projects .btn:hover {
+  background: rgba(47, 48, 97, .9);
+}
+.projects .btn:focus-visible {
+  outline: 3px solid var(--c-accent);
+  outline-offset: 2px;
+}
+
+/* (이전) 이력/학력 섹션은 비활성화 또는 삭제 가능
+------------------------------------*/
+/* .work-experience { background: #f7fff7; }
 .job-item {
   display: grid;
   grid-template-columns: 1fr 2fr;
   column-gap: 20px;
 }
-
-/* Education
-------------------------------------*/
 .education {
   background-image: url(../images/joanna-kosinska-unsplash.jpg);
   background-size: cover;
   background-position: top right;
   padding-bottom: 60px;
 }
-.education p {
-  width: 60%;
-}
+.education p { width: 60%; } */
 
-
-
-
-
-
-/* Contact Info
+/* Footer / Contact
 ------------------------------------*/
 footer {
   background: #343434;
   color: #f7fff7;
   text-align: center;
 }
+footer a { color: var(--c-accent); } /* 푸터 내부 링크는 노랑 */
 .contact-list {
   list-style-type: none;
   padding: 0;
+  margin: 0;
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
   justify-content: center;
 }
 .contact-list a {
-  padding: 15px;
+  padding: 12px;
   display: inline-block;
 }
 
-
-
-
-
-/* Project html font setting,img size
+/* 세부 페이지 이미지(사용 중이면 유지)
 ------------------------------------*/
 .project_html_img {
-width: 100%;
-
+  width: 100%;
 }
 
+/* Responsive
+------------------------------------*/
+@media (max-width: 992px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+}
 
+@media (max-width: 768px) {
+  .content-wrap { width: 92%; padding: 36px 0; }
+  .project-item {
+    grid-template-columns: 120px 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
+  .project-item {
+    grid-template-columns: 1fr; /* 모바일: 세로 스택 */
+  }
+}
