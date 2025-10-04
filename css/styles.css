@@ -1,233 +1,142 @@
-/*
-COLOR PALETTE
-https://coolors.co/f7fff7-343434-2f3061-ffe66d-a1c6d7
-#F7FFF7 - almost white
-#343434 - dark gray - almost black
-#2F3061 - blue dark
-#FFE66D - yellow
-#A1C6D7 - blue light
-*/
-
-/* Optional: CSS에서 폰트 임포트 (HTML <head>에 link 추가했다면 생략 가능) */
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap'); */
-
-/* Global
-------------------------------------*/
-html {
-  box-sizing: border-box;
-  -webkit-text-size-adjust: 100%;
-}
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
+/* =====================================================================
+   Design Tokens (색, 간격, 폰트)
+   처음엔 아래 값만 바꿔도 사이트 전체 분위기가 바뀝니다.
+===================================================================== */
 :root{
-  /* 타이포 스케일 */
-  --font-base: 16px;
-  --spacing: 1rem;
-  --radius: 8px;
+  /* 컬러 팔레트 */
+  --c-bg:        #F7FFF7; /* almost white */
+  --c-text:      #343434; /* dark gray */
+  --c-primary:   #2F3061; /* dark blue */
+  --c-accent:    #FFE66D; /* yellow */
+  --c-surface:   #A1C6D7; /* light blue */
+  --c-card:      #ffffff;
 
-  /* 색상 토큰 */
-  --c-bg: #F7FFF7;
-  --c-text: #343434;
-  --c-primary: #2F3061;
-  --c-accent: #FFE66D;
-  --c-surface: #A1C6D7;
+  /* 타이포/레이아웃 */
+  --ff-title: "Caveat", cursive;
+  --ff-body:  "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
+
+  --fs-base: 16px;
+  --radius:  12px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 6px 24px rgba(0,0,0,.08);
+
+  /* 간격 단위(지정해두면 통일성↑) */
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
 }
+
+/* 다크모드(시스템 설정 따름) */
+@media (prefers-color-scheme: dark) {
+  :root{
+    --c-bg:      #121316;
+    --c-text:    #EDEDED;
+    --c-primary: #BFC6FF;
+    --c-accent:  #FFE66D;
+    --c-surface: #223242;
+    --c-card:    #1c1f24;
+    --shadow-md: 0 6px 24px rgba(0,0,0,.35);
+  }
+}
+
+/* =====================================================================
+   Reset / Base
+===================================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
 
 body {
+  margin: 0;
   color: var(--c-text);
   background: var(--c-bg);
-  margin: 0;
-  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
-  font-size: var(--font-base);
-  line-height: 1.6;
+  font-family: var(--ff-body);
+  font-size: var(--fs-base);
+  line-height: 1.7;
 }
 
-/* 전역 img 폭 강제 제거 → 컴포넌트 단위에서 제어 */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+img{ max-width: 100%; display:block; height:auto; }
 
-/* 링크: 기본은 진한 파랑, 헤더/푸터에서 밝은 색으로 오버라이드 */
-a {
+a{
   color: var(--c-primary);
   text-underline-offset: 2px;
 }
-a:hover {
-  text-decoration: none;
-}
-a:focus-visible {
+a:hover{ text-decoration: none; }
+a:focus-visible{
   outline: 3px solid var(--c-accent);
   outline-offset: 2px;
 }
 
-/* 헤딩
-------------------------------------*/
-h1, h2 {
-  font-family: "Caveat", cursive;
-  font-weight: 400;
-  margin: 0 0 .5rem 0;
-  line-height: 1.1;
-}
-h1 { font-size: 3rem; }
-h2 { font-size: 2.25rem; }
-h3 {
-  margin: 0 0 .25rem 0;
-  font-size: 1.25rem;
+/* 컨테이너: 페이지 가로 폭을 통일 */
+.container{
+  width: min(100% - 6vw, 1040px);
+  margin-inline: auto;
 }
 
-/* 레이아웃 공통 래퍼 */
-.content-wrap {
-  max-width: 960px;
-  width: 90%;
-  margin: 0 auto;
-  padding: 48px 0;
-}
+/* =====================================================================
+   Global Sections
+===================================================================== */
+.site{ display:flex; flex-direction: column; min-height: 100dvh; }
 
-/* 유틸 */
-.small-letter {
-  font-size: .8rem;
-  font-style: italic;
-}
-.item-details h3 + p { font-style: italic; }
-.item-details h3 ~ p { margin: 0; }
+.section{ padding: var(--space-6) 0; }
+.section--surface{ background: var(--c-surface); }
 
-/* 구분선(필요시) */
-.divider > section {
-  border-bottom: 1px dashed var(--c-text);
-  padding: 24px 0;
-}
-.divider > section:last-of-type { border-bottom: none; }
-
-/* Header (Intro)
-------------------------------------*/
-header {
-  background: var(--c-primary);
-  color: #f7fff7;
-  text-align: center;
-}
-header a { color: var(--c-accent); }  /* 헤더 내부 링크는 밝게 */
-
-/* Projects
-------------------------------------*/
-.projects {
-  background: var(--c-surface);
-}
-
-/* 프로젝트 리스트: 카드형 그리드 */
-.projects .content-wrap {
-  display: grid;
-  gap: 28px;
-}
-
-/* 각 프로젝트 카드 */
-.project-item {
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: var(--radius);
-  padding: 16px;
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 16px;
-  align-items: start;
-}
-
-/* 썸네일: 전용 클래스 부여 권장 (HTML에서 <img class="project-thumb">) */
-.project-item img {
-  width: 100%;
-  border-radius: calc(var(--radius) - 2px);
-  /* 옛 float 제거: 반응형 안정성 ↑ */
-}
-
-/* 타이틀 여백 보정 */
-.project-item h3 {
-  margin-top: 0;
-}
-
-/* 버튼 */
-.projects a { color: var(--c-primary); }
-.projects .btn {
-  color: #f7fff7;
-  background: var(--c-primary);
-  text-decoration: none;
-  padding: 10px 14px;
-  border-radius: 6px;
-  display: inline-block;
+.section__head{ margin-bottom: var(--space-4); }
+.section__title{
+  font-family: var(--ff-title);
   font-weight: 600;
+  font-size: clamp(28px, 4vw, 42px);
+  margin: 0 0 var(--space-2) 0;
 }
-.projects .btn:hover {
-  background: rgba(47, 48, 97, .9);
-}
-.projects .btn:focus-visible {
-  outline: 3px solid var(--c-accent);
-  outline-offset: 2px;
-}
+.section__desc{ margin: 0; opacity: .9; }
 
-/* (이전) 이력/학력 섹션은 비활성화 또는 삭제 가능
-------------------------------------*/
-/* .work-experience { background: #f7fff7; }
-.job-item {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  column-gap: 20px;
-}
-.education {
-  background-image: url(../images/joanna-kosinska-unsplash.jpg);
-  background-size: cover;
-  background-position: top right;
-  padding-bottom: 60px;
-}
-.education p { width: 60%; } */
-
-/* Footer / Contact
-------------------------------------*/
-footer {
-  background: #343434;
+/* =====================================================================
+   Hero
+===================================================================== */
+.hero{
+  background: var(--c-primary);
   color: #f7fff7;
   text-align: center;
+  padding: calc(var(--space-6) + 8px) 0 var(--space-6);
+  box-shadow: var(--shadow-sm) inset;
 }
-footer a { color: var(--c-accent); } /* 푸터 내부 링크는 노랑 */
-.contact-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  justify-content: center;
+.hero a{ color: var(--c-accent); }
+
+.hero__title{
+  font-family: var(--ff-title);
+  font-weight: 600;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.1;
+  margin: 0 0 var(--space-2) 0;
 }
-.contact-list a {
-  padding: 12px;
-  display: inline-block;
+.hero__subtitle{
+  font-weight: 600;
+  margin: 0 0 var(--space-3) 0;
+  opacity: .95;
+}
+.hero__lead{
+  margin: 0 auto var(--space-4);
+  max-width: 800px;
+  opacity: .95;
+}
+.hero__nav{
+  display: inline-flex;
+  gap: var(--space-2);
 }
 
-/* 세부 페이지 이미지(사용 중이면 유지)
-------------------------------------*/
-.project_html_img {
-  width: 100%;
-}
-
-/* Responsive
-------------------------------------*/
-@media (max-width: 992px) {
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 2rem; }
-}
-
-@media (max-width: 768px) {
-  .content-wrap { width: 92%; padding: 36px 0; }
-  .project-item {
-    grid-template-columns: 120px 1fr;
-  }
-}
-
-@media (max-width: 540px) {
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.6rem; }
-  .project-item {
-    grid-template-columns: 1fr; /* 모바일: 세로 스택 */
-  }
-}
+/* =====================================================================
+   Buttons
+===================================================================== */
+.btn{
+  display:inline-block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1d2145;
+  font-weight: 600;
+  text-decoration: no
