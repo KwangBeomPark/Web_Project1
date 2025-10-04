@@ -1,87 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automation Projects by Bob Park</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-  </head>
-  <body>
-    <main>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Automation Portfolio · Bob Park</title>
 
-      <!-- ***********************  ABOUT / INTRO  *********************** -->
-      <header>
-        <div class="content-wrap">
-          <h1>Kwang Beom Park (Bob)</h1>
-          <h2>Automation Projects for Finance & Office Efficiency</h2>
-          <p><i>
-            As a finance manager, I have automated repetitive reporting and data management tasks using VBA, Python, C#, and AutoHotkey.
-            What started as a small efficiency idea became a strong passion — reducing manual work and increasing data accuracy across teams.
-          </i></p>
+  <!-- 웹 폰트: 제목(Caveat), 본문(Montserrat) -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- 메인 스타일 -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- 기본 파비콘(선택) -->
+  <link rel="icon" href="images/favicon.png" />
+</head>
+<body>
+  <!-- 전체 래퍼: 섹션 간 최대 너비/패딩 제어 -->
+  <div class="site">
+
+    <!-- HEADER / HERO --------------------------------------------------->
+    <header class="hero">
+      <div class="container">
+        <h1 class="hero__title">Kwang Beom Park (Bob)</h1>
+        <p class="hero__subtitle">Finance Manager → 업무 자동화 메이커 (VBA · Python · C# · AHK)</p>
+
+        <p class="hero__lead">
+          재무/세무/보고 자동화를 직접 설계하고 구현합니다. <br class="only-desktop" />
+          “반복 업무를 클릭 한 번으로” — 팀 생산성과 데이터 정확도를 동시에 끌어올리는 것이 목표입니다.
+        </p>
+
+        <nav class="hero__nav" aria-label="Primary">
+          <a class="btn" href="#projects">프로젝트 보기</a>
+          <a class="btn btn--ghost" href="#contact">연락처</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- PROJECTS -------------------------------------------------------->
+    <main id="projects" class="section section--surface">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">Automation Projects</h2>
+          <p class="section__desc">프로젝트 카드를 복사-붙여넣기만 하면 손쉽게 추가할 수 있어요.</p>
         </div>
-      </header>
 
-      <!-- ********************  AUTOMATION PROJECTS  ********************* -->
-      <section class="projects">
-        <div class="content-wrap">
-          <h2>Selected Automation Tools</h2>
+        <!-- 프로젝트 그리드 -->
+        <div class="grid grid--cards">
 
-          <!-- Project 1 -->
-          <section class="project-item">
-            <img src="images/Project_ExcelAddin.png" alt="Excel Ribbon Add-in">
-            <h3>Excel Ribbon Add-in (VBA)</h3>
-            <p>
-              Custom Excel Add-in designed for Finance Team – includes ribbon menus, report automation, and quick access to manuals and templates.
-            </p>
-            <a class="btn" href="project_excel_addin.html" target="_blank">View Details</a>
-          </section>
+          <!-- [템플릿] 새 프로젝트 추가 시, 이 카드 단위를 복사하세요. -->
+          <!-- Excel Add-in (VBA) -------------------------------------------------->
+          <article class="card" aria-labelledby="proj-vba-title">
+            <div class="card__media">
+              <img src="images/Project_ExcelAddin.png" alt="Excel 리본탭 기반 재무팀 Add-in 데모" />
+            </div>
+            <div class="card__body">
+              <h3 id="proj-vba-title" class="card__title">Excel Ribbon Add-in (VBA)</h3>
+              <p class="card__text">
+                리본 메뉴 + 자동 리포트 생성 + 매크로 툴킷. 월별 보고/검증/내부 통제를 단일 버튼으로 단축.
+              </p>
+              <ul class="tags">
+                <li class="tag">VBA</li>
+                <li class="tag">Excel</li>
+                <li class="tag">Reporting</li>
+              </ul>
+            </div>
+            <div class="card__foot">
+              <!-- 상세 페이지를 나중에 만들면 링크만 바꾸면 됩니다. -->
+              <a class="btn btn--small" href="project_excel_addin.html">상세 보기</a>
+              <a class="btn btn--small btn--ghost" href="https://github.com/kwangbeompark" target="_blank" rel="noopener">소스 코드</a>
+            </div>
+          </article>
 
-          <!-- Project 2 -->
-          <section class="project-item">
-            <img src="images/Project_PythonCapture.png" alt="Python Screen Capture App">
-            <h3>Python Screen Capture & OCR App</h3>
-            <p>
-              Desktop application to capture screen regions, recognize text, and copy results to clipboard. Built with PyQt5 and Windows OCR API.
-            </p>
-            <a class="btn" href="project_python_capture.html" target="_blank">View Details</a>
-          </section>
+          <!-- Python OCR / Capture --------------------------------------------->
+          <article class="card" aria-labelledby="proj-py-title">
+            <div class="card__media">
+              <img src="images/Project_PythonCapture.png" alt="화면 캡처 및 OCR 결과를 클립보드로 복사하는 앱 데모" />
+            </div>
+            <div class="card__body">
+              <h3 id="proj-py-title" class="card__title">Python Screen Capture &amp; OCR</h3>
+              <p class="card__text">
+                화면 영역 캡처 → 텍스트 인식 → 클립보드 복사. PyQt5 & Windows OCR API 기반 경량 자동화.
+              </p>
+              <ul class="tags">
+                <li class="tag">Python</li>
+                <li class="tag">OCR</li>
+                <li class="tag">PyQt5</li>
+              </ul>
+            </div>
+            <div class="card__foot">
+              <a class="btn btn--small" href="project_python_capture.html">상세 보기</a>
+              <a class="btn btn--small btn--ghost" href="https://github.com/kwangbeompark" target="_blank" rel="noopener">소스 코드</a>
+            </div>
+          </article>
 
-          <!-- Project 3 -->
-          <section class="project-item">
-            <img src="images/Project_AHK.png" alt="AutoHotkey Folder Launcher">
-            <h3>AutoHotkey Folder Launcher</h3>
-            <p>
-              Keyboard-driven tool to open predefined folders and apps using hotkeys. Designed for quick navigation in daily finance operations.
-            </p>
-            <a class="btn" href="project_ahk_launcher.html" target="_blank">View Details</a>
-          </section>
+          <!-- AHK Folder Launcher ----------------------------------------------->
+          <article class="card" aria-labelledby="proj-ahk-title">
+            <div class="card__media">
+              <img src="images/Project_AHK.png" alt="단축키 기반 폴더/앱 실행기 데모" />
+            </div>
+            <div class="card__body">
+              <h3 id="proj-ahk-title" class="card__title">AutoHotkey Folder Launcher</h3>
+              <p class="card__text">
+                자주 쓰는 폴더/앱을 단축키로 순간 실행. 반복 네비게이션 시간을 획기적으로 단축.
+              </p>
+              <ul class="tags">
+                <li class="tag">AutoHotkey</li>
+                <li class="tag">Hotkeys</li>
+              </ul>
+            </div>
+            <div class="card__foot">
+              <a class="btn btn--small" href="project_ahk_launcher.html">상세 보기</a>
+              <a class="btn btn--small btn--ghost" href="https://github.com/kwangbeompark" target="_blank" rel="noopener">소스 코드</a>
+            </div>
+          </article>
 
-          <!-- Project 4 -->
-          <section class="project-item">
-            <img src="images/Project_CSharp.png" alt="C# Email Tool">
-            <h3>C# WinForms Email Automation</h3>
-            <p>
-              Sends automated financial reports via email with inline charts and images, improving report delivery consistency and speed.
-            </p>
-            <a class="btn" href="project_csharp_email.html" target="_blank">View Details</a>
-          </section>
-
-        </div>
-      </section>
-
-      <!-- *****************  CONTACT INFO / SOCIAL MEDIA  ***************** -->
-      <footer>
-        <div class="content-wrap">
-          <h2>Contact</h2>
-          <ul class="contact-list">
-            <li><a href="mailto:park.kwangbeomi@gmail.com">park.kwangbeomi@gmail.com</a></li>
-            <li><a href="https://github.com/kwangbeompark" target="_blank">GitHub</a></li>
-            <li><a href="https://linkedin.com/in/kwang-beom-p-ab01b075" target="_blank">LinkedIn</a></li>
-          </ul>
-        </div>
-      </footer>
-
-    </main>
-  </body>
-</html>
+          <!-- C# WinForms Email Tool -------------------------------------------->
+          <article class="card" aria-labelledby="proj-cs-title">
+            <div class="card__media">
+              <img src="images/Project_CSharp.png" alt="C# 이메일 자동화 도구 데모" />
+            </div>
+            <div class="card__body">
+              <h3 id="proj-cs-title" class="card__title">C# WinForms Email Automation</h3>
+              <p class="card__text">
+                리포트를 자동 첨부/본문 삽입(차트/이미지)해 발송. 전달 속도와 일관성 개선.
+              </p>
+              <ul class="tags">
+                <li class="tag">C#</li>
+                <li class="tag">WinForms</li>
+                <li class="tag">Email</li>
+              </ul>
+            </div>
+            <div class="card__foot">
+              <a class="btn btn--small" href="project_csharp_email.html">상세 보기</a>
+              <a class="btn btn--small btn--ghost" href="https://github.com/kwa
