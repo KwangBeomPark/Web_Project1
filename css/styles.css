@@ -1,50 +1,46 @@
-/* =====================================================================
-   Design Tokens (색, 간격, 폰트)
-   처음엔 아래 값만 바꿔도 사이트 전체 분위기가 바뀝니다.
-===================================================================== */
+/* =========================================================================
+   디자인 토큰 (색/폰트/간격)
+=========================================================================== */
 :root{
-  /* 컬러 팔레트 */
-  --c-bg:        #F7FFF7; /* almost white */
-  --c-text:      #343434; /* dark gray */
-  --c-primary:   #2F3061; /* dark blue */
-  --c-accent:    #FFE66D; /* yellow */
-  --c-surface:   #A1C6D7; /* light blue */
+  --c-bg:        #F7FFF7;
+  --c-text:      #343434;
+  --c-primary:   #2F3061;
+  --c-accent:    #FFE66D;
+  --c-surface:   #A1C6D7;
   --c-card:      #ffffff;
 
-  /* 타이포/레이아웃 */
   --ff-title: "Caveat", cursive;
   --ff-body:  "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
 
   --fs-base: 16px;
   --radius:  12px;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
-  --shadow-md: 0 6px 24px rgba(0,0,0,.08);
 
-  /* 간격 단위(지정해두면 통일성↑) */
   --space-1: 6px;
   --space-2: 10px;
   --space-3: 16px;
   --space-4: 24px;
   --space-5: 32px;
   --space-6: 48px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 6px 24px rgba(0,0,0,.08);
 }
 
-/* 다크모드(시스템 설정 따름) */
+/* 다크 모드(선택) */
 @media (prefers-color-scheme: dark) {
   :root{
     --c-bg:      #121316;
     --c-text:    #EDEDED;
     --c-primary: #BFC6FF;
-    --c-accent:  #FFE66D;
     --c-surface: #223242;
     --c-card:    #1c1f24;
     --shadow-md: 0 6px 24px rgba(0,0,0,.35);
   }
 }
 
-/* =====================================================================
-   Reset / Base
-===================================================================== */
+/* =========================================================================
+   리셋/베이스
+=========================================================================== */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -60,7 +56,7 @@ body {
   line-height: 1.7;
 }
 
-img{ max-width: 100%; display:block; height:auto; }
+img { max-width: 100%; height: auto; display: block; }
 
 a{
   color: var(--c-primary);
@@ -72,15 +68,11 @@ a:focus-visible{
   outline-offset: 2px;
 }
 
-/* 컨테이너: 페이지 가로 폭을 통일 */
 .container{
   width: min(100% - 6vw, 1040px);
   margin-inline: auto;
 }
 
-/* =====================================================================
-   Global Sections
-===================================================================== */
 .site{ display:flex; flex-direction: column; min-height: 100dvh; }
 
 .section{ padding: var(--space-6) 0; }
@@ -95,9 +87,44 @@ a:focus-visible{
 }
 .section__desc{ margin: 0; opacity: .9; }
 
-/* =====================================================================
-   Hero
-===================================================================== */
+/* =========================================================================
+   상단 언어 스위치 바
+=========================================================================== */
+.langbar{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  padding: 6px 0;
+}
+@media (prefers-color-scheme: dark){
+  .langbar{
+    background: rgba(0,0,0,.35);
+    border-bottom-color: rgba(255,255,255,.15);
+  }
+}
+.langbar__btn{
+  margin: 0 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.langbar__btn[aria-pressed="true"]{
+  background: var(--c-accent);
+  border-color: transparent;
+}
+@media (prefers-color-scheme: dark){
+  .langbar__btn{ background: #202329; color: #EDEDED; border-color: rgba(255,255,255,.18); }
+}
+
+/* =========================================================================
+   히어로(헤더)
+=========================================================================== */
 .hero{
   background: var(--c-primary);
   color: #f7fff7;
@@ -129,9 +156,9 @@ a:focus-visible{
   gap: var(--space-2);
 }
 
-/* =====================================================================
-   Buttons
-===================================================================== */
+/* =========================================================================
+   버튼
+=========================================================================== */
 .btn{
   display:inline-block;
   padding: 10px 14px;
@@ -139,4 +166,31 @@ a:focus-visible{
   background: #ffffff;
   color: #1d2145;
   font-weight: 600;
-  text-decoration: no
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn--ghost{
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+.btn--small{ padding: 8px 12px; font-size: 0.95rem; }
+
+/* =========================================================================
+   프로젝트 카드
+=========================================================================== */
+.grid{ display:grid; gap: var(--space-4); }
+
+.grid--cards{
+  grid-template-columns: repeat(12, 1fr);
+}
+@media (max-width: 960px){
+  .grid--cards{ grid-template-columns: repeat(8, 1fr); }
+}
+@media (max-width: 640px){
+  .grid--cards{ grid-template-columns: repeat(4, 1fr); }
+}
+
+.card{
+  grid-column: span
