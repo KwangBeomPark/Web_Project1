@@ -1,6 +1,6 @@
-/* =========================================================================
-   디자인 토큰 (색/폰트/간격)
-=========================================================================== */
+/* =========================
+   Design Tokens
+========================= */
 :root{
   --c-bg:        #F7FFF7;
   --c-text:      #343434;
@@ -26,28 +26,28 @@
   --shadow-md: 0 6px 24px rgba(0,0,0,.08);
 }
 
-/* 다크 모드(선택) */
+/* 다크모드 */
 @media (prefers-color-scheme: dark) {
   :root{
     --c-bg:      #121316;
     --c-text:    #EDEDED;
     --c-primary: #BFC6FF;
+    --c-accent:  #FFE66D;
     --c-surface: #223242;
     --c-card:    #1c1f24;
     --shadow-md: 0 6px 24px rgba(0,0,0,.35);
   }
 }
 
-/* =========================================================================
-   리셋/베이스
-=========================================================================== */
+/* =========================
+   Reset / Base
+========================= */
 *,
 *::before,
 *::after { box-sizing: border-box; }
-
 html { -webkit-text-size-adjust: 100%; }
 
-body {
+body{
   margin: 0;
   color: var(--c-text);
   background: var(--c-bg);
@@ -56,23 +56,13 @@ body {
   line-height: 1.7;
 }
 
-img { max-width: 100%; height: auto; display: block; }
+img{ max-width: 100%; height:auto; display:block; }
 
-a{
-  color: var(--c-primary);
-  text-underline-offset: 2px;
-}
+a{ color: var(--c-primary); text-underline-offset: 2px; }
 a:hover{ text-decoration: none; }
-a:focus-visible{
-  outline: 3px solid var(--c-accent);
-  outline-offset: 2px;
-}
+a:focus-visible{ outline: 3px solid var(--c-accent); outline-offset: 2px; }
 
-.container{
-  width: min(100% - 6vw, 1040px);
-  margin-inline: auto;
-}
-
+.container{ width: min(100% - 6vw, 1040px); margin-inline: auto; }
 .site{ display:flex; flex-direction: column; min-height: 100dvh; }
 
 .section{ padding: var(--space-6) 0; }
@@ -87,44 +77,9 @@ a:focus-visible{
 }
 .section__desc{ margin: 0; opacity: .9; }
 
-/* =========================================================================
-   상단 언어 스위치 바
-=========================================================================== */
-.langbar{
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,.85);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(0,0,0,.06);
-  padding: 6px 0;
-}
-@media (prefers-color-scheme: dark){
-  .langbar{
-    background: rgba(0,0,0,.35);
-    border-bottom-color: rgba(255,255,255,.15);
-  }
-}
-.langbar__btn{
-  margin: 0 6px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,.12);
-  background: #fff;
-  cursor: pointer;
-  font-weight: 600;
-}
-.langbar__btn[aria-pressed="true"]{
-  background: var(--c-accent);
-  border-color: transparent;
-}
-@media (prefers-color-scheme: dark){
-  .langbar__btn{ background: #202329; color: #EDEDED; border-color: rgba(255,255,255,.18); }
-}
-
-/* =========================================================================
-   히어로(헤더)
-=========================================================================== */
+/* =========================
+   Hero
+========================= */
 .hero{
   background: var(--c-primary);
   color: #f7fff7;
@@ -151,14 +106,11 @@ a:focus-visible{
   max-width: 800px;
   opacity: .95;
 }
-.hero__nav{
-  display: inline-flex;
-  gap: var(--space-2);
-}
+.hero__nav{ display: inline-flex; gap: var(--space-2); }
 
-/* =========================================================================
-   버튼
-=========================================================================== */
+/* =========================
+   Buttons
+========================= */
 .btn{
   display:inline-block;
   padding: 10px 14px;
@@ -170,27 +122,90 @@ a:focus-visible{
   box-shadow: var(--shadow-sm);
 }
 .btn:hover{ transform: translateY(-1px); }
-.btn--ghost{
-  background: transparent;
-  color: #ffffff;
-  border: 2px solid #ffffff;
-}
+.btn--ghost{ background: transparent; color: #ffffff; border: 2px solid #ffffff; }
 .btn--small{ padding: 8px 12px; font-size: 0.95rem; }
 
-/* =========================================================================
-   프로젝트 카드
-=========================================================================== */
+/* =========================
+   Grid / Cards
+========================= */
 .grid{ display:grid; gap: var(--space-4); }
-
-.grid--cards{
-  grid-template-columns: repeat(12, 1fr);
-}
-@media (max-width: 960px){
-  .grid--cards{ grid-template-columns: repeat(8, 1fr); }
-}
-@media (max-width: 640px){
-  .grid--cards{ grid-template-columns: repeat(4, 1fr); }
-}
+.grid--cards{ grid-template-columns: repeat(12, 1fr); }
+@media (max-width: 960px){ .grid--cards{ grid-template-columns: repeat(8, 1fr); } }
+@media (max-width: 640px){ .grid--cards{ grid-template-columns: repeat(4, 1fr); } }
 
 .card{
-  grid-column: span
+  grid-column: span 6; /* 2열 */
+  background: var(--c-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+@media (max-width: 960px){
+  .card{ grid-column: span 8; grid-template-columns: 200px 1fr; }
+}
+@media (max-width: 640px){
+  .card{ grid-column: span 4; grid-template-columns: 1fr; }
+}
+
+.card__media img{
+  border-radius: 10px;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.card__title{ margin: 0 0 var(--space-2) 0; font-size: 1.25rem; font-weight: 700; }
+.card__text{ margin: 0 0 var(--space-3) 0; }
+.card__foot{ display:flex; gap: var(--space-2); align-items:center; margin-top: auto; }
+
+.tags{ list-style:none; padding:0; margin: 0 0 var(--space-3) 0; display:flex; flex-wrap:wrap; gap: 6px; }
+.tag{ display:inline-block; padding: 4px 8px; border-radius: 999px; background: rgba(0,0,0,.06); font-size: .85rem; }
+@media (prefers-color-scheme: dark){ .tag{ background: rgba(255,255,255,.08); } }
+
+/* =========================
+   Contact / Tools
+========================= */
+.contact{ list-style:none; padding:0; margin: var(--space-3) 0 0; display:flex; flex-wrap:wrap; gap: var(--space-2); }
+.contact a{ display:inline-block; padding: 10px 12px; border-radius: 8px; background: var(--c-surface); text-decoration:none; box-shadow: var(--shadow-sm); }
+.tools li{ background:#fff; padding:10px 12px; border-radius:8px; box-shadow:var(--shadow-sm); }
+@media (prefers-color-scheme: dark){
+  .contact a{ background: #243545; }
+  .tools li{ background:#1f2430; }
+}
+
+/* =========================
+   Footer
+========================= */
+.footer{ background: #2a2a2a; color: #f7fff7; text-align:center; padding: var(--space-4) 0; }
+
+/* =========================
+   Language switch (EN/KR)
+========================= */
+.lang-switch{
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 9999;
+  display: flex;
+  gap: 6px;
+}
+.lang-btn{
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 700;
+  background: #ffffff;
+  color: #1d2145;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+.lang-btn.active{
+  background: var(--c-accent);
+}
+
+/* 텍스트 토글: 기본 EN, KR 숨김 */
+.t{ display:inline; }
+.lang-en .t-ko{ display:none !important; }
+.lang-ko .t-en{ display:none !important; }
