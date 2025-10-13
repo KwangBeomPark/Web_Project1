@@ -1,101 +1,204 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
+  <!-- 메타 -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- 제목 -->
   <title>Bob Park · Automation Portfolio</title>
 
   <!-- 웹폰트 -->
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
-  <!-- CSS 연결 -->
+
+  <!-- 메인 CSS -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
-  <div class="site">
+<body class="lang-en"><!-- 기본 언어: EN -->
 
-    <!-- [소개 영역] -->
+  <!-- 언어 토글(고정) -->
+  <div class="lang-switch" role="group" aria-label="Language switch">
+    <button id="btn-en" class="lang-btn active" aria-pressed="true">EN</button>
+    <button id="btn-ko" class="lang-btn" aria-pressed="false">KR</button>
+  </div>
+
+  <div class="site">
+    <!-- HERO -->
     <header class="hero">
       <div class="container">
-        <h1 class="hero__title">Kwang Beom Park (Bob)</h1>
-        <p class="hero__subtitle">재무 매니저 · 업무 자동화 메이커 (VBA · AHK)</p>
-        <p class="hero__lead">
-          반복되는 보고/정리/검증 작업을 자동화하여 업무 시간을 절감하고 정확도를 높입니다.  
-          현업 프로세스를 가장 잘 아는 사람이 직접 만든 실무형 자동화 도구입니다.
+        <h1 class="hero__title">
+          <span class="t t-en">Kwang Beom Park (Bob)</span>
+          <span class="t t-ko">박광범 (Bob)</span>
+        </h1>
+
+        <p class="hero__subtitle">
+          <span class="t t-en">Finance Manager → Automation Builder (VBA · AHK · Power Query · Excel Online · RPA/UiPath)</span>
+          <span class="t t-ko">재무 매니저 → 자동화 빌더 (VBA · AHK · Power Query · Excel Online · RPA/UiPath)</span>
         </p>
-        <nav class="hero__nav">
-          <a class="btn" href="#projects">프로젝트 보기</a>
-          <a class="btn btn--ghost" href="#contact">연락처</a>
+
+        <p class="hero__lead">
+          <span class="t t-en">
+            I design and implement practical automations that compress reporting, validation, and hand-offs into one click—owned by the business, not a ticket queue.
+          </span>
+          <span class="t t-ko">
+            보고·검증·인수인계 등의 반복 업무를 클릭 한 번으로 줄이는 실무형 자동화를, 현업 주도 방식으로 직접 설계·구현합니다.
+          </span>
+        </p>
+
+        <nav class="hero__nav" aria-label="Primary">
+          <a class="btn" href="#projects">
+            <span class="t t-en">View Projects</span>
+            <span class="t t-ko">프로젝트 보기</span>
+          </a>
+          <a class="btn btn--ghost" href="#contact">
+            <span class="t t-en">Contact</span>
+            <span class="t t-ko">연락처</span>
+          </a>
         </nav>
       </div>
     </header>
 
-    <!-- [프로젝트 섹션] -->
+    <!-- PROJECTS -->
     <main id="projects" class="section section--surface">
       <div class="container">
         <div class="section__head">
-          <h2 class="section__title">Automation Projects</h2>
-          <p class="section__desc">해외법인의 실무 문제를 해결하기 위해 직접 개발한 자동화 도구들입니다.</p>
+          <h2 class="section__title">
+            <span class="t t-en">Automation Projects</span>
+            <span class="t t-ko">자동화 프로젝트</span>
+          </h2>
+          <p class="section__desc">
+            <span class="t t-en">Built to solve day-to-day issues at overseas subsidiaries—measurable impact and easy handover.</span>
+            <span class="t t-ko">해외법인의 일상적 문제를 해결하기 위해 개발—정량 성과와 쉬운 인수인계를 중시합니다.</span>
+          </p>
         </div>
 
         <div class="grid grid--cards">
 
-          <!-- 카드 1: Excel Ribbon Add-in (VBA) -->
+          <!-- CARD 1: Excel Add-in (VBA) -->
           <article class="card" aria-labelledby="proj-vba-title">
             <div class="card__media">
-              <img src="images/Project_ExcelAddin.png" alt="Excel 리본탭 기반 재무팀 Add-in 이미지" />
+              <img src="images/Project_ExcelAddin.png" alt="Excel Ribbon Add-in demo image" />
             </div>
             <div class="card__body">
-              <h3 id="proj-vba-title" class="card__title">Excel Ribbon Add-in (VBA)</h3>
+              <h3 id="proj-vba-title" class="card__title">
+                <span class="t t-en">Excel Ribbon Add-in (VBA)</span>
+                <span class="t t-ko">엑셀 리본 애드인 (VBA)</span>
+              </h3>
+
               <p class="card__text">
-                리본 메뉴, 자동 리포트 생성, 매크로 툴킷 기능을 통합한 재무팀용 Add-in.  
-                세무 리포트와 월별 보고 프로세스를 자동화하여, 1인당 월 6시간 이상 절감 효과.
+                <span class="t t-en">
+                  Unified ribbon menu + report auto-build + validation toolkit for Finance.  
+                  <strong>Impact:</strong> >80% fewer “data availability” inquiries from Sales to Sales Admin; ~6 hrs saved per analyst per month.  
+                  <strong>Tech:</strong> VBA, Power Query, Excel Online integration, logging & error handling.
+                </span>
+                <span class="t t-ko">
+                  재무팀용 리본 메뉴·보고서 자동 생성·검증 툴킷을 통합.  
+                  <strong>성과:</strong> 영업팀의 자료 관련 문의가 영업관리팀에 <strong>80% 이상</strong> 감소, 분석가 1인 기준 월 약 6시간 절감.  
+                  <strong>기술:</strong> VBA, Power Query, Excel Online 연계, 로깅·에러 처리.
+                </span>
               </p>
+
               <ul class="tags">
                 <li class="tag">VBA</li>
-                <li class="tag">Excel</li>
-                <li class="tag">Finance Reporting</li>
+                <li class="tag">Power Query</li>
+                <li class="tag">Excel Online</li>
+                <li class="tag">Reporting</li>
               </ul>
             </div>
             <div class="card__foot">
-              <a class="btn btn--small" href="project_excel_addin.html">상세 보기</a>
-              <a class="btn btn--small btn--ghost" href="https://github.com/kwangbeompark" target="_blank" rel="noopener">소스 코드</a>
+              <a class="btn btn--small" href="project_excel_addin.html">
+                <span class="t t-en">Details</span>
+                <span class="t t-ko">상세 보기</span>
+              </a>
+              <a class="btn btn--small btn--ghost" href="https://github.com/kwangbeompark" target="_blank" rel="noopener">
+                <span class="t t-en">Source</span>
+                <span class="t t-ko">소스 코드</span>
+              </a>
             </div>
           </article>
 
-          <!-- 카드 2 (삭제됨) -->
-          <!-- 카드 3: AutoHotkey Folder Launcher -->
+          <!-- CARD 3: AHK Folder Launcher -->
           <article class="card" aria-labelledby="proj-ahk-title">
             <div class="card__media">
-              <img src="images/Project_AHK.png" alt="단축키 기반 폴더/앱 실행기 이미지" />
+              <img src="images/Project_AHK.png" alt="AutoHotkey launcher demo image" />
             </div>
             <div class="card__body">
-              <h3 id="proj-ahk-title" class="card__title">AutoHotkey Folder Launcher</h3>
+              <h3 id="proj-ahk-title" class="card__title">
+                <span class="t t-en">AutoHotkey Folder/App Launcher + Text Snippets</span>
+                <span class="t t-ko">AHK 폴더/앱 런처 + 텍스트 스니펫</span>
+              </h3>
+
               <p class="card__text">
-                팀 내 주요 폴더·앱을 단축키로 즉시 실행하는 자동화 유틸리티.  
-                복잡한 네트워크 경로를 빠르게 열어 업무 효율을 향상.
+                <span class="t t-en">
+                  Instant access to network drives and apps via hotkeys. Users can modify a simple <code>.txt</code> config to add their own paths.  
+                  Supports <strong>Win key + Numpad</strong> combos to input frequently used text (snippets)—perfect for order notes, email replies, or codes.
+                </span>
+                <span class="t t-ko">
+                  단축키로 네트워크 드라이브·앱을 즉시 실행. 사용자는 간단한 <code>.txt</code> 설정 파일을 직접 수정해 경로를 추가할 수 있습니다.  
+                  <strong>윈도 키 + 숫자패드</strong> 조합으로 자주 쓰는 텍스트(스니펫)를 즉시 입력—주문 메모, 이메일 회신, 코드 입력 등에 유용합니다.
+                </span>
               </p>
+
               <ul class="tags">
                 <li class="tag">AutoHotkey</li>
                 <li class="tag">Windows Automation</li>
+                <li class="tag">Hotkeys</li>
               </ul>
             </div>
             <div class="card__foot">
-              <a class="btn btn--small" href="project_ahk_launcher.html">상세 보기</a>
-              <a class="btn btn--small btn--ghost" href="https://github.com/kwangbeompark" target="_blank" rel="noopener">소스 코드</a>
+              <a class="btn btn--small" href="project_ahk_launcher.html">
+                <span class="t t-en">Details</span>
+                <span class="t t-ko">상세 보기</span>
+              </a>
+              <a class="btn btn--small btn--ghost" href="https://github.com/kwangbeompark" target="_blank" rel="noopener">
+                <span class="t t-en">Source</span>
+                <span class="t t-ko">소스 코드</span>
+              </a>
             </div>
           </article>
 
-        </div>
-      </div>
+        </div><!-- /grid -->
+      </div><!-- /container -->
     </main>
 
-    <!-- [연락처] -->
+    <!-- SKILLS (Used Tools & Languages) -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">
+            <span class="t t-en">Used Tools & Languages</span>
+            <span class="t t-ko">사용 기술 & 도구</span>
+          </h2>
+          <p class="section__desc">
+            <span class="t t-en">Business-owned automations with simple handover and documented configs.</span>
+            <span class="t t-ko">현업 주도 자동화를 지향하며, 설정·인수인계 문서를 함께 제공합니다.</span>
+          </p>
+        </div>
+
+        <ul class="contact tools">
+          <li>VBA</li>
+          <li>Power Query</li>
+          <li>Excel Online</li>
+          <li>AutoHotkey</li>
+          <li>RPA (UiPath, basic)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
     <section id="contact" class="section">
       <div class="container">
         <div class="section__head">
-          <h2 class="section__title">Contact</h2>
-          <p class="section__desc">협업, 채용, 또는 자동화 프로젝트 관련 문의는 아래로 연락 주세요.</p>
+          <h2 class="section__title">
+            <span class="t t-en">Contact</span>
+            <span class="t t-ko">연락처</span>
+          </h2>
+          <p class="section__desc">
+            <span class="t t-en">For collaboration, hiring, or project inquiries:</span>
+            <span class="t t-ko">협업·채용·프로젝트 문의:</span>
+          </p>
         </div>
+
         <ul class="contact">
           <li><a href="mailto:park.kwangbeomi@gmail.com">park.kwangbeomi@gmail.com</a></li>
           <li><a href="https://github.com/kwangbeompark" target="_blank" rel="noopener">GitHub</a></li>
@@ -104,7 +207,7 @@
       </div>
     </section>
 
-    <!-- [푸터] -->
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="container">
         <small>© <span id="year"></span> Bob Park · Automation Portfolio</small>
@@ -112,8 +215,30 @@
     </footer>
   </div>
 
+  <!-- 언어 토글 & 연도 스크립트 (아주 단순) -->
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      const body = document.body;
+      const btnEN = document.getElementById('btn-en');
+      const btnKO = document.getElementById('btn-ko');
+
+      function setLang(lang){
+        body.classList.toggle('lang-en', lang === 'en');
+        body.classList.toggle('lang-ko', lang === 'ko');
+        btnEN.classList.toggle('active', lang === 'en');
+        btnKO.classList.toggle('active', lang === 'ko');
+        btnEN.setAttribute('aria-pressed', lang === 'en');
+        btnKO.setAttribute('aria-pressed', lang === 'ko');
+        // 문서 <html>의 lang 속성도 함께 변경(접근성)
+        document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'ko');
+      }
+
+      btnEN.addEventListener('click', () => setLang('en'));
+      btnKO.addEventListener('click', () => setLang('ko'));
+
+      // 푸터 연도
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>
