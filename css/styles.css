@@ -21,6 +21,7 @@
   --space-4: 24px;
   --space-5: 32px;
   --space-6: 48px;
+  --space-7: 64px; /* 카드 간격 확대용 */
 
   --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
   --shadow-md: 0 6px 24px rgba(0,0,0,.08);
@@ -65,9 +66,11 @@ a:focus-visible{ outline: 3px solid var(--c-accent); outline-offset: 2px; }
 .container{ width: min(100% - 6vw, 1040px); margin-inline: auto; }
 .site{ display:flex; flex-direction: column; min-height: 100dvh; }
 
+/* 공통 섹션 패딩 */
 .section{ padding: var(--space-6) 0; }
 .section--surface{ background: var(--c-surface); }
 
+/* 섹션 타이틀 */
 .section__head{ margin-bottom: var(--space-4); }
 .section__title{
   font-family: var(--ff-title);
@@ -84,7 +87,7 @@ a:focus-visible{ outline: 3px solid var(--c-accent); outline-offset: 2px; }
   background: var(--c-primary);
   color: #f7fff7;
   text-align: center;
-  padding: calc(var(--space-6) + 8px) 0 var(--space-6);
+  padding: calc(var(--space-6) + 10px) 0 var(--space-6);
   box-shadow: var(--shadow-sm) inset;
 }
 .hero a{ color: var(--c-accent); }
@@ -126,29 +129,29 @@ a:focus-visible{ outline: 3px solid var(--c-accent); outline-offset: 2px; }
 .btn--small{ padding: 8px 12px; font-size: 0.95rem; }
 
 /* =========================
-   Grid / Cards
+   Stack (세로 카드 리스트)
 ========================= */
-.grid{ display:grid; gap: var(--space-4); }
-.grid--cards{ grid-template-columns: repeat(12, 1fr); }
-@media (max-width: 960px){ .grid--cards{ grid-template-columns: repeat(8, 1fr); } }
-@media (max-width: 640px){ .grid--cards{ grid-template-columns: repeat(4, 1fr); } }
+.stack{
+  display: grid;
+  gap: var(--space-7); /* 카드 간격 크게 */
+}
+.stack--cards{
+  grid-template-columns: 1fr; /* 항상 단일 컬럼(세로) */
+}
 
+/* 카드(프로젝트 박스) */
 .card{
-  grid-column: span 6; /* 2열 */
   background: var(--c-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   overflow: hidden;
   display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: var(--space-3);
-  padding: var(--space-3);
+  grid-template-columns: 280px 1fr; /* 좌: 이미지 / 우: 텍스트 */
+  gap: var(--space-4);
+  padding: var(--space-4);
 }
-@media (max-width: 960px){
-  .card{ grid-column: span 8; grid-template-columns: 200px 1fr; }
-}
-@media (max-width: 640px){
-  .card{ grid-column: span 4; grid-template-columns: 1fr; }
+@media (max-width: 800px){
+  .card{ grid-template-columns: 1fr; } /* 모바일: 세로 배치 */
 }
 
 .card__media img{
@@ -158,8 +161,9 @@ a:focus-visible{ outline: 3px solid var(--c-accent); outline-offset: 2px; }
 }
 .card__title{ margin: 0 0 var(--space-2) 0; font-size: 1.25rem; font-weight: 700; }
 .card__text{ margin: 0 0 var(--space-3) 0; }
-.card__foot{ display:flex; gap: var(--space-2); align-items:center; margin-top: auto; }
+.card__foot{ display:flex; gap: var(--space-2); align-items:center; margin-top: var(--space-2); }
 
+/* 태그 */
 .tags{ list-style:none; padding:0; margin: 0 0 var(--space-3) 0; display:flex; flex-wrap:wrap; gap: 6px; }
 .tag{ display:inline-block; padding: 4px 8px; border-radius: 999px; background: rgba(0,0,0,.06); font-size: .85rem; }
 @media (prefers-color-scheme: dark){ .tag{ background: rgba(255,255,255,.08); } }
@@ -185,27 +189,41 @@ a:focus-visible{ outline: 3px solid var(--c-accent); outline-offset: 2px; }
 ========================= */
 .lang-switch{
   position: fixed;
-  top: 12px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   z-index: 9999;
   display: flex;
-  gap: 6px;
+  gap: 8px;
+  padding: 6px;
+  background: rgba(255,255,255,.9);
+  border-radius: 999px;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(6px);
 }
+@media (prefers-color-scheme: dark){
+  .lang-switch{ background: rgba(30,30,34,.7); }
+}
+
 .lang-btn{
   border: 0;
   border-radius: 999px;
-  padding: 6px 10px;
-  font-weight: 700;
-  background: #ffffff;
+  padding: 8px 14px;
+  font-weight: 800;
+  background: transparent;
   color: #1d2145;
-  box-shadow: var(--shadow-sm);
   cursor: pointer;
+}
+@media (prefers-color-scheme: dark){
+  .lang-btn{ color: #fff; }
 }
 .lang-btn.active{
   background: var(--c-accent);
+  color: #1d2145;
+  box-shadow: var(--shadow-sm);
 }
 
-/* 텍스트 토글: 기본 EN, KR 숨김 */
+/* 언어 표시: 기본 EN만 보이도록 보수적 규칙 추가 */
 .t{ display:inline; }
-.lang-en .t-ko{ display:none !important; }
+.t-ko{ display:none; }              /* 기본: 한글 숨김 */
 .lang-ko .t-en{ display:none !important; }
+.lang-ko .t-ko{ display:inline !important; }
